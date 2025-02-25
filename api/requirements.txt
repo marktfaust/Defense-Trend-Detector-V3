@@ -169,3 +169,18 @@ wrapt==1.17.2
 yarl==1.18.3
 zipp==3.21.0
 zstandard==0.23.0
+
+# Adding dependencies of non-reasoning RAG (commented ones already included)
+
+# boto3==1.34.117
+boto3
+# fastapi==0.111.0
+# mangum==0.17.0
+mangum
+# uvicorn==0.30.0
+# pypdf==4.2.0
+# chromadb==0.5.0
+# langchain==0.2.1
+# langchain-aws==0.1.6
+langchain-aws
+# langchain-community==0.2.1
