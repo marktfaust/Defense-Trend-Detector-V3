@@ -4,3 +4,4 @@ venv/
 chroma_db/
 .gradio/
 data/
+__pycache__/
