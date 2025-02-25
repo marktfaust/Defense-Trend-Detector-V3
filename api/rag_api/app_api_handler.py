@@ -1,19 +1,19 @@
 import os
-import uvicorn
-import boto3
+import uvicorn # type: ignore
+import boto3 # type: ignore
 import json
 
 import shutil
-from fastapi import FastAPI, UploadFile, File
-from fastapi.middleware.cors import CORSMiddleware
-from mangum import Mangum
-from pydantic import BaseModel
+from fastapi import FastAPI, UploadFile, File # type: ignore
+from fastapi.middleware.cors import CORSMiddleware # type: ignore
+from mangum import Mangum # type: ignore
+from pydantic import BaseModel # type: ignore
 from query_model import QueryModel
 from rag_app.query_rag import query_rag
 
 from populate_database import populate_database
 
-from dotenv import load_dotenv
+from dotenv import load_dotenv # type: ignore
 load_dotenv()
 
 WORKER_LAMBDA_NAME = os.environ.get("WORKER_LAMBDA_NAME", None)

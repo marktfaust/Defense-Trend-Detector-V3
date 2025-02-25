@@ -1,7 +1,7 @@
-from smolagents import OpenAIServerModel, CodeAgent, ToolCallingAgent, HfApiModel, tool, GradioUI
-from dotenv import load_dotenv
-from langchain_chroma import Chroma
-from langchain_huggingface import HuggingFaceEmbeddings
+from smolagents import OpenAIServerModel, CodeAgent, ToolCallingAgent, HfApiModel, tool, GradioUI # type: ignore
+from dotenv import load_dotenv # type: ignore
+from langchain_chroma import Chroma # type: ignore
+from langchain_huggingface import HuggingFaceEmbeddings # type: ignore
 import os
 
 load_dotenv()
@@ -46,9 +46,13 @@ def rag_with_reasoner(user_query: str) -> str:
     """
     # Search for relevant documents
     docs = vectordb.similarity_search(user_query, k=3)
+
+    print("THIS IS THE VECTOR DB", vectordb)
     
     # Combine document contents
     context = "\n\n".join(doc.page_content for doc in docs)
+
+    print('THIS IS THE CONTEXT', context)
     
     # Create prompt with context
     prompt = f"""Based on the following context, answer the user's question. Be concise and specific.
