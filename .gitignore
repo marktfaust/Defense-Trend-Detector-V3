@@ -5,3 +5,4 @@ chroma_db/
 .gradio/
 data/
 __pycache__/
+ingest_pdfs.py
