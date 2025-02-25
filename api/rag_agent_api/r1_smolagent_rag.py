@@ -1,8 +1,13 @@
 from smolagents import OpenAIServerModel, CodeAgent, ToolCallingAgent, HfApiModel, tool, GradioUI # type: ignore
 from dotenv import load_dotenv # type: ignore
 from langchain_chroma import Chroma # type: ignore
-from langchain_huggingface import HuggingFaceEmbeddings # type: ignore
+# from langchain_huggingface import HuggingFaceEmbeddings # type: ignore
+import sys
 import os
+sys.path.append(os.path.abspath("../rag_api/rag_app"))
+
+from get_embedding_function import get_embedding_function # type: ignore
+
 
 load_dotenv()
 
@@ -26,10 +31,11 @@ reasoning_model = get_model(reasoning_model_id)
 reasoner = CodeAgent(tools=[], model=reasoning_model, add_base_tools=False, max_steps=2)
 
 # Initialize vector store and embeddings
-embeddings = HuggingFaceEmbeddings(
-    model_name="sentence-transformers/all-mpnet-base-v2",
-    model_kwargs={'device': 'cpu'}
-)
+# embeddings = HuggingFaceEmbeddings(
+#     model_name="sentence-transformers/all-mpnet-base-v2",
+#     model_kwargs={'device': 'cpu'}
+# )
+embeddings = get_embedding_function()
 # db_dir = os.path.join(os.path.dirname(__file__), "chroma_db")
 db_dir = os.getenv("CHROMA_PATH")
 vectordb = Chroma(persist_directory=db_dir, embedding_function=embeddings)
