@@ -1,3 +1,4 @@
+import DocsButton from "./components/buttons/DocsButton";
 import RefreshDatabaseButton from "./components/buttons/RefreshDatabaseButton";
 import ResetDatabaseButton from "./components/buttons/ResetDatabaseButton";
 import FileUpload from "./components/elements/FileUpload";
@@ -24,6 +25,7 @@ const App = () => {
             <RefreshDatabaseButton />
             <ResetDatabaseButton />
             <FileUpload />
+            <DocsButton />
           </div>
         </div>
       </div>
