@@ -1,4 +1,4 @@
-# Defense-Trend-Detector-Local
+# Defense-Trend-Detector-V3
 
 # FOR API/RAG_APP:
 
