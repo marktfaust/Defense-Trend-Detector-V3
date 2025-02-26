@@ -29,6 +29,11 @@ const RefreshDatabaseButton: React.FC = () => {
 
     try {
       // Replace with your actual API endpoint
+      if (!API_URL) {
+        throw new Error("API URL is not defined");
+      }
+
+      // Construct your API endpoint
       const apiUrl: string = `${API_URL}/populate_database`;
 
       // Make the API call
@@ -58,29 +63,37 @@ const RefreshDatabaseButton: React.FC = () => {
   };
 
   return (
-    <div>
+    <div className="space-y-4">
+      {/* Button or loading indicator */}
       {!isLoading ? (
-        <button onClick={handleApiCall} disabled={isLoading}>
+        <button
+          onClick={handleApiCall}
+          disabled={isLoading}
+          className="w-full bg-green-600 hover:bg-green-700 text-white font-medium py-2 px-4 rounded-md transition-colors"
+        >
           {response ? "Call API Again" : "Update Database"}
         </button>
       ) : (
-        <div>
-          <div></div>
+        <div className="flex flex-col items-center space-y-2">
           <p>Loading...</p>
         </div>
       )}
 
       {/* Display response when available */}
       {response && (
-        <div>
-          <h3>API Response:</h3>
-          <pre>{JSON.stringify(response, null, 2)}</pre>
+        <div className="p-4 bg-white border border-slate-300 rounded-md">
+          <h3 className="text-xl font-semibold mb-2 text-slate-700">
+            API Response:
+          </h3>
+          <pre className="text-sm text-slate-700 whitespace-pre-wrap">
+            {JSON.stringify(response, null, 2)}
+          </pre>
         </div>
       )}
 
       {/* Display error if any */}
       {error && (
-        <div>
+        <div className="text-red-600">
           <p>Error: {error}</p>
         </div>
       )}
