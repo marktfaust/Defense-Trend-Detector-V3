@@ -7,6 +7,5 @@ data/
 __pycache__/
 ingest_pdfs.py
 SavedApp.tsx
-ResponseDetails.tsx
 secret_keys/
 TODO
