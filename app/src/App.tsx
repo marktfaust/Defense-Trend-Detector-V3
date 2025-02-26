@@ -5,6 +5,7 @@ import FileUpload from "./components/elements/FileUpload";
 import Header from "./components/elements/Header";
 import RagAgentAPI from "./components/elements/RagAgentAPI";
 import ResponseDetails from "./components/elements/ResponseDetails";
+import SocialFooter from "./components/elements/SocialFooter";
 import SubmitQueryForm from "./components/elements/SubmitQueryForm";
 
 const App = () => {
@@ -32,6 +33,15 @@ const App = () => {
 
       <ResponseDetails />
       <RagAgentAPI />
+      <SocialFooter
+        personalWebsite="https://marktfaust.com"
+        linkedIn="https://linkedin.com/in/marktfaust"
+        companyWebsite="https://thebarrax.co"
+        github="https://github.com/marktfaust"
+        youtube="https://www.youtube.com/@TheBarraxPodcast"
+        name="Mark Faust"
+        companyName="The Barrax Company"
+      />
     </div>
   );
 };
