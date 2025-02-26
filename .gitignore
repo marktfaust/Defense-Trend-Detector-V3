@@ -3,7 +3,7 @@ venv/
 .DS_Store
 chroma_db/
 .gradio/
-data/
+chroma/
 __pycache__/
 ingest_pdfs.py
 SavedApp.tsx
