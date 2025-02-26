@@ -1,5 +1,6 @@
 import argparse
 import os
+import sys
 import shutil
 from langchain_community.document_loaders import PyPDFDirectoryLoader
 from langchain_text_splitters import RecursiveCharacterTextSplitter
@@ -20,20 +21,21 @@ CHROMA_PATH = os.getenv("CHROMA_PATH")
 DATA_SOURCE_PATH = os.getenv("DATA_SOURCE_PATH")
 
 
-def populate_database(reset=False):
-    # Check if the database should be cleared (using the --clear flag).
-    try:
-        parser = argparse.ArgumentParser()
-        parser.add_argument("--reset", action="store_true", help="Reset the database.")
-        args = parser.parse_args()
-        if args.reset:
-            print("✨ Clearing Database")
-            clear_database()
-    except:
-        if reset:
-            print("✨ Clearing Database")
-            clear_database()
+def populate_database():
+    # Check if "--reset" is in the command-line arguments.
+    if "--reset" in sys.argv:
+        print("✨ Clearing Database")
+        clear_database()
+    
+    # Create (or update) the data store.
+    documents = load_documents()
+    chunks = split_documents(documents)
+    add_to_chroma(chunks)
 
+
+def reset_database():
+    print("✨ Clearing Database")
+    clear_database()
     # Create (or update) the data store.
     documents = load_documents()
     chunks = split_documents(documents)
@@ -56,6 +58,10 @@ def split_documents(documents: list[Document]):
 
 
 def add_to_chroma(chunks: list[Document]):
+    if not os.path.exists(CHROMA_PATH):
+        print("🆕 Chroma database not found. Creating a new one...")
+        os.makedirs(CHROMA_PATH, exist_ok=True)
+
     # Load the existing database.
     db = Chroma(
         persist_directory=CHROMA_PATH, embedding_function=get_embedding_function()

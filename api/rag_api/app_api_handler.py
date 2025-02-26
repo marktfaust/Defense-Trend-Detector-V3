@@ -11,7 +11,7 @@ from pydantic import BaseModel # type: ignore
 from query_model import QueryModel
 from rag_app.query_rag import query_rag
 
-from populate_database import populate_database
+from populate_database import populate_database, reset_database
 
 from dotenv import load_dotenv # type: ignore
 load_dotenv()
@@ -76,7 +76,7 @@ def populate_database_endpoint():
 @app.post("/reset_database")
 def reset_database_endpoint():
     # Create the query item, and put it into the data-base.
-    response = populate_database(reset=True)
+    response = reset_database()
     return response
 
 
