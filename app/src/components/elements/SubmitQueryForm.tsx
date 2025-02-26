@@ -52,12 +52,15 @@ const SubmitQueryForm: React.FC = () => {
   };
 
   return (
-    <div className="max-w-lg mx-auto p-4 bg-gray-100 rounded-lg shadow-md">
-      <h2 className="text-xl font-semibold mb-4 text-left">Submit a Query</h2>
-      <form onSubmit={handleSubmit} className="flex flex-col gap-3">
+    <div className="w-1/2 bg-slate-50 p-6 rounded-lg shadow-md">
+      <h2 className="text-2xl font-semibold mb-4 text-slate-700">
+        Query Section
+      </h2>
+
+      <form onSubmit={handleSubmit} className="space-y-4">
         <textarea
-          className="p-2 border rounded-md"
-          rows={4}
+          className="w-full p-3 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          rows={5}
           placeholder="Enter your query..."
           value={queryText}
           onChange={(e) => setQueryText(e.target.value)}
@@ -65,7 +68,7 @@ const SubmitQueryForm: React.FC = () => {
         />
         <button
           type="submit"
-          className="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600"
+          className="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-md transition-colors"
           disabled={loading}
         >
           {loading ? "Submitting..." : "Submit Query"}
@@ -75,8 +78,8 @@ const SubmitQueryForm: React.FC = () => {
       {error && <p className="text-red-500 mt-3 text-left">{error}</p>}
 
       {responseData && (
-        <div className="mt-4 p-2 bg-white border rounded-md text-left">
-          <h2 className="font-medium">Response Details:</h2>
+        <div className="mt-4 p-4 bg-white border border-slate-300 rounded-md text-slate-700">
+          <h3 className="text-xl font-semibold mb-2">Response Details:</h3>
           <p>
             <strong>Query ID:</strong> {responseData.query_id}
           </p>
@@ -91,12 +94,10 @@ const SubmitQueryForm: React.FC = () => {
             <strong>Answer:</strong> {responseData.answer_text}
           </p>
 
-          <h3 className="mt-2 font-medium">Sources:</h3>
-          <ul className="list-disc pl-4">
+          <h4 className="mt-2 font-semibold">Sources:</h4>
+          <ul className="list-disc pl-4 text-sm">
             {responseData.sources.map((source, index) => (
-              <li key={index} className="text-sm">
-                {source}
-              </li>
+              <li key={index}>{source}</li>
             ))}
           </ul>
 
