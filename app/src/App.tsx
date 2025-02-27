@@ -1,6 +1,7 @@
 import Header from "./components/elements/Header";
 import RagAgentAPI from "./components/elements/RagAgentAPI";
 import SocialFooter from "./components/elements/SocialFooter";
+import CrawlSection from "./components/sections/CrawlSection";
 import RagSection from "./components/sections/RagSection";
 
 const App = () => {
@@ -9,6 +10,7 @@ const App = () => {
       <Header />
       <RagSection />
       <RagAgentAPI />
+      <CrawlSection />
       <SocialFooter
         personalWebsite="https://marktfaust.com"
         linkedIn="https://linkedin.com/in/marktfaust"
