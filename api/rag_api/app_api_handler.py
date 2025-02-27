@@ -12,6 +12,8 @@ from query_model import QueryModel
 from rag_app.query_rag import query_rag
 
 from populate_database import populate_database, reset_database
+from dotenv import load_dotenv  # type: ignore
+from crawl import crawl
 
 from dotenv import load_dotenv # type: ignore
 load_dotenv()
@@ -33,6 +35,9 @@ handler = Mangum(app)  # Entry point for AWS Lambda.
 
 class SubmitQueryRequest(BaseModel):
     query_text: str
+
+class CrawlRequest(BaseModel):
+    url: str
 
 
 # Define the directory to save uploaded files
@@ -115,6 +120,14 @@ def invoke_worker(query: QueryModel):
     )
 
     print(f"✅ Worker Lambda invoked: {response}")
+
+
+@app.post("/crawl")
+async def crawl_endpoint(request: CrawlRequest):
+    # Use request.url to crawl
+    print(request.url)
+    markdown_content = await crawl(request.url)
+    return {"markdown": markdown_content}
 
 
 if __name__ == "__main__":
